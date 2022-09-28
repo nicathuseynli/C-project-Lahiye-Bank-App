@@ -1,0 +1,14 @@
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\bin\Debug\netcoreapp3.1\C project (last week) Bank.exe
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\bin\Debug\netcoreapp3.1\C project (last week) Bank.deps.json
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\bin\Debug\netcoreapp3.1\C project (last week) Bank.runtimeconfig.json
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\bin\Debug\netcoreapp3.1\C project (last week) Bank.runtimeconfig.dev.json
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\bin\Debug\netcoreapp3.1\C project (last week) Bank.dll
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\bin\Debug\netcoreapp3.1\C project (last week) Bank.pdb
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\obj\Debug\netcoreapp3.1\C project (last week) Bank.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\obj\Debug\netcoreapp3.1\C project (last week) Bank.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\obj\Debug\netcoreapp3.1\C project (last week) Bank.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\obj\Debug\netcoreapp3.1\C project (last week) Bank.AssemblyInfo.cs
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\obj\Debug\netcoreapp3.1\C project (last week) Bank.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\obj\Debug\netcoreapp3.1\C project (last week) Bank.dll
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\obj\Debug\netcoreapp3.1\C project (last week) Bank.pdb
+C:\Users\user\source\repos\C project (last week) Bank\C project (last week) Bank\obj\Debug\netcoreapp3.1\C project (last week) Bank.genruntimeconfig.cache
