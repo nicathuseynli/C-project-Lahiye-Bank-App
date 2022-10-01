@@ -10,15 +10,15 @@ namespace C_project__last_week__Bank.Models
         public string Surname { get; set; }
         public string  Profession { get; set; }
         public decimal Salary { get; set; }
-        public Employee (string name,string surname,decimal salary,string profession,bool softdelete)
-        {
-            Name = name;
-            Surname = surname;
-            Profession = profession;
-            Salary = salary;
-            SoftDelete = softdelete;
+        //public Employee (string name,string surname,decimal salary,string profession,bool softdelete)
+        //{
+        //    Name = name;
+        //    Surname = surname;
+        //    Profession = profession;
+        //    Salary = salary;
+        //    SoftDelete = softdelete;
 
-        }
+        //}
     
     }
 }

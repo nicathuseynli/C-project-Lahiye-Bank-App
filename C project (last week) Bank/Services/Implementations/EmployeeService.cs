@@ -15,16 +15,31 @@ namespace C_project__last_week__Bank.Services.Implementations
         {
             data = new Bank<Employee>();
         }
-        public void Create(Employee partner)
+        public void Create(Employee partner1)
         {
-            if(partner.SoftDelete == false)
-            {
-                data.Datas.Add(partner);
-            }
-            else
-            {
-                Console.WriteLine(" This Employee is avaialable .");
-            }
+            Employee partner = new Employee();
+            data.Datas.Add(partner);
+            Console.Clear();
+            Console.WriteLine("Create Branch");
+            Console.WriteLine("Please Enter the Name:");
+            string name = Console.ReadLine();
+            Console.WriteLine("Please Enter the Surname:");
+            string surname = Console.ReadLine();
+            Console.WriteLine("Please Enter the Salary:");
+            decimal salary = decimal.Parse(Console.ReadLine());
+            Console.WriteLine("Please Enter the Profession:");
+            string profession = Console.ReadLine();
+            partner.Name = name;
+            partner.Surname = surname;
+            partner.Salary = salary;
+            partner.Profession = profession;
+            //if(partner.SoftDelete == false)
+            //{
+            //}
+            //else
+            //{
+            //    Console.WriteLine(" This Employee is avaialable .");
+            //}
         }
 
         public void Delete(string name)
