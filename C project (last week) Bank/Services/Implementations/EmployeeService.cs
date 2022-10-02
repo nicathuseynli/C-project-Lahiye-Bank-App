@@ -20,7 +20,7 @@ namespace C_project__last_week__Bank.Services.Implementations
             Employee partner = new Employee();
             data.Datas.Add(partner);
             Console.Clear();
-            Console.WriteLine("Create Branch");
+            Console.WriteLine("Create Employee");
             Console.WriteLine("Please Enter the Name:");
             string name = Console.ReadLine();
             Console.WriteLine("Please Enter the Surname:");
@@ -42,8 +42,9 @@ namespace C_project__last_week__Bank.Services.Implementations
             //}
         }
 
-        public void Delete(string name)
+        public void Delete()
         {
+            string name = Console.ReadLine();
             try
             {
                 Employee employee = data.Datas.Find(x=>x.Name.Contains(name.ToLower().Trim()) || x.Surname.Contains(name.ToLower().Trim()));
@@ -54,25 +55,31 @@ namespace C_project__last_week__Bank.Services.Implementations
             }
         }
 
-        public void Get(string basentity)
+        public void Get()
+            
         {
-            Employee employee = data.Datas.Find(l=>l.Name.Contains(basentity.ToLower().Trim()) || l.Surname.Contains(basentity.ToLower().Trim()) || l.Profession.Contains(basentity.ToLower().Trim()));
+            string name = Console.ReadLine();
+            Employee employee = data.Datas.Find(l=>l.Name.Contains(name.ToLower().Trim()) || l.Surname.Contains(name.ToLower().Trim()) || l.Profession.Contains(name.ToLower().Trim()));
             Console.WriteLine(employee.Name + " " + employee.Surname + " " + employee.Profession);
         }
 
         public void GetAll()
         {
-            foreach (var employee in data.Datas.Where(n => n.SoftDelete = false))
+            foreach (Employee employee in data.Datas.Where(n => n.SoftDelete == false))
             {
-                Console.WriteLine(employee.Name + " " + employee.Surname);
+                Console.WriteLine($"Name: {employee.Name}\n Surname: {employee.Surname}\n Profession: {employee.Profession}\n Salary:{employee.Salary}");
             }
         }
 
-        public void Update(string Text, decimal Number, string Text1)
+        public void Update()
         {
-            Employee employee = data.Datas.Find(u=>u.Name.ToLower().Trim() == Text.ToLower().Trim());
-            employee.Salary = Number;
-            employee.Profession = Text1;
+            Console.Write("Name : ");
+            string name = Console.ReadLine();
+            Employee employee = data.Datas.Find(u=>u.Name.ToLower().Trim() == name.ToLower().Trim());
+            Console.Write("New Salary : ");
+            employee.Salary = decimal.Parse(Console.ReadLine());
+            Console.Write("New Profession : ");
+            employee.Profession = Console.ReadLine();
         }
     }
 }

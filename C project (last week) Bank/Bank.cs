@@ -19,6 +19,8 @@ namespace C_project__last_week__Bank
             Manager manager = new Manager();
 
 
+            while (true)
+            {
 
             Console.Write("Login: ");
             string login=Console.ReadLine();
@@ -51,27 +53,26 @@ namespace C_project__last_week__Bank
                                         goto Menu;
                                         break;
                                      case 2:
-                                        //branchService.Delete(branch);
+                                        branchService.TransferMoney();
                                         goto Menu;
                                         break;
-
                                     case 3:
-                                        //branchService.Update(branch);
+                                        branchService.Get();
                                         goto Menu;
                                         break;
                                     case 4:
-                                        //branchService.TransferMoney();
+                                        branchService.GetAll();
                                         goto Menu;
                                         break;
                                     case 5:
-                                        //branchService.Get(branch);
+                                        //branchService.Update(branch);
+                                        //branchService.Delete(branch);
                                         goto Menu;
                                         break;
                                     case 6:
                                         //branchService.TransferEmployee();
                                         goto Menu;
                                         break;
-
                                 }
                                 break;
 
@@ -90,19 +91,21 @@ namespace C_project__last_week__Bank
                                 goto Menu;
                                 break;
                             case 2:
-                                // employeeService.Delete();
+                                 employeeService.Delete();
+                                    Console.WriteLine(" Employee successfully deleted ");
                                 goto Menu;
                                 break;
                             case 3:
-                               // employeeService.Update();
+                                employeeService.Update();
                                 goto Menu;
                                 break;
                             case 4:
-                                //employeeService.Get();
-                                goto Menu;
+                               employeeService.Get();
+                                    //Console.WriteLine(employee.Name + " " + employee.Surname + " " + employee.Profession);
+                                    goto Menu;
                                 break;
                             case 5:
-                               // employeeService.GetAll();
+                               employeeService.GetAll();
                                 goto Menu;
                                 break;
                         }
@@ -115,6 +118,7 @@ namespace C_project__last_week__Bank
                 Console.WriteLine("Incorrect Login and Password");
             }
             
+            }
         }
         //public static void Data()
         //{
@@ -131,12 +135,14 @@ namespace C_project__last_week__Bank
         public static void BranchMenu()
         {
             Console.WriteLine("1 : Create Branch");
-            Console.WriteLine("2 : Delete Branch");
-            Console.WriteLine("3 : Update Branch");
-            Console.WriteLine("4 : Get    Branch");
-            Console.WriteLine("5 : GetAll Branch");
-            Console.WriteLine("6 : Get    Profit");
-            Console.WriteLine("7 : Hire  Employee");
+            Console.WriteLine("2 : Transfer Money");
+            Console.WriteLine("3 : Get");
+            Console.WriteLine("4 : GetAll ");
+            Console.WriteLine("5 : Delete Branch");
+            Console.WriteLine("6 : Update Branch");
+            Console.WriteLine("7 : Get    Profit");
+            Console.WriteLine("8 : Hire  Employee");
+            Console.WriteLine("9 : Transfer Employee");
         }
         public static void EmployeeMenu()
         {

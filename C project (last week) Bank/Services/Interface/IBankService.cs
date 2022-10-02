@@ -9,9 +9,9 @@ namespace C_project__last_week__Bank.Services.Interface
 
     {
         void Create(T entity );
-        void Update(string Text,decimal Number,string Text1 );
-        void Delete( string name);
-        void Get(string basentity);
+        void Update();
+        void Delete();
+        void Get();
         void GetAll();
 
     }

@@ -32,24 +32,24 @@ namespace C_project__last_week__Bank.Services.Implementations
             partner.Address = address;
         }
 
-        public void Delete(string name)
+        public void Delete()
         {
+            string name=Console.ReadLine();
             Branch branch = data.Datas.Find(x => x.Name == name.ToLower().Trim());
             branch.SoftDelete = true;
         }
 
-        public void Get(string basentity)
+        public void Get()
         {
-
+              string name = Console.ReadLine();
             try
             {
-                Branch branch = data.Datas.Find(n => n.Name == basentity.ToLower().Trim());
-                Console.WriteLine(branch.Name + " " + branch.Budget);
-
+                Branch branch = data.Datas.Find(l => l.Name.Contains(name.ToLower().Trim()) || l.Budget.ToString().Contains(name.ToLower().Trim()) || l.Address.Contains(name.ToLower().Trim()));
+                Console.WriteLine(branch.Name + " " + branch.Budget + " " + branch.Address);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Branch not found");
+                Console.WriteLine("Branch not found ! ! !");
             }
         }
 
@@ -58,14 +58,27 @@ namespace C_project__last_week__Bank.Services.Implementations
             foreach (var branch in data.Datas.Where(m => m.SoftDelete = false)) ;
         }
 
-        public void GetProfit( string branchName,decimal totalSalary,decimal profitCount)
+        public void GetProfit(Branch branch)
         {
-    
+            Console.WriteLine("Calculate profit and less:\n");
+            Console.WriteLine("Input Cost Price : ");
+            Console.WriteLine("Input Selling Price : ");
+            decimal Sellprice = 0;
+            branch.employees.ForEach(c => Sellprice += c.Salary);
+            decimal GetProfil = branch.Budget - Sellprice;
+            Console.WriteLine( $"Profit of the {branch.Name} branch in {GetProfil}");
+         
         }
 
-        public void HireEmployee(string employeeName,string branchName)
+        public void HireEmployee(Branch branch,EmployeeService employeeService)
         {
-
+            Employee employee = new Employee();
+            if (branch.Budget > employee.Salary)
+            {
+                branch.employees.Add(employee);
+                branch.Budget = employee.Salary;
+                Console.WriteLine($"Employee{employee.Name} surname {employee.Surname} was successfully hired .");
+            }
         }
 
         public void TransferEmployee(string employeeName,string branchName,Branch branch)
@@ -99,7 +112,7 @@ namespace C_project__last_week__Bank.Services.Implementations
             }
         }
 
-        public void TransferMoney(decimal transferAmount,string transferId)
+        public void TransferMoney()
         { 
             Console.WriteLine(           "Transfer Money");
             Console.Write(           "Please Enter Your Name:");
@@ -108,30 +121,34 @@ namespace C_project__last_week__Bank.Services.Implementations
             string name =Console.ReadLine();
             Console.WriteLine(       "Select Amount :");
             int amount = Convert.ToInt32(Console.ReadLine());
-            Employee employee = new Employee();
+            Branch branch = new Branch();  
             foreach(Branch Transfer in data.Datas)
             {
-                if (employee.Name == name)
+                if (branch.Name == name)
                 {
-                    Transfer.Budget += employee.Salary;
+                    Transfer.Budget += branch.Budget;
 
                 }               
             }
             foreach(Branch Transfer in data.Datas)
             {
-                if(Transfer.Name == employee.Name)
+                if(Transfer.Name == branch.Name)
                 {
-                    employee.Salary += Transfer.Budget;
+                    branch.Budget += Transfer.Budget;
+                    break;
                 }
             }
         }
 
-        public void Update(string Text, decimal Number, string Text1)
+        public void Update()
         {
             {
-                Branch branch = data.Datas.Find(u => u.Name.ToLower().Trim() == Text.ToLower().Trim());
-                branch.Budget = Number;
-                branch.Address = Text1;
+                Console.Write("Name : ");
+                string name = Console.ReadLine();
+                Branch branch  = data.Datas.Find(u => u.Name.ToLower().Trim() == name.ToLower().Trim());
+                Console.Write("New Salary : ");
+                branch.Budget = decimal.Parse(Console.ReadLine());
+                branch.Address = Console.ReadLine();
             }
         }
     }
