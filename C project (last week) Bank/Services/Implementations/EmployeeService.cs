@@ -55,19 +55,19 @@ namespace C_project__last_week__Bank.Services.Implementations
             }
         }
 
-        public void Get()
-            
+        public void Get()           
         {
+            Console.Write("Name : ");
             string name = Console.ReadLine();
-            Employee employee = data.Datas.Find(l=>l.Name.Contains(name.ToLower().Trim()) || l.Surname.Contains(name.ToLower().Trim()) || l.Profession.Contains(name.ToLower().Trim()));
-            Console.WriteLine(employee.Name + " " + employee.Surname + " " + employee.Profession);
+            Employee employee = data.Datas.Find(l=>l.Name.Contains(name.Trim()) || l.Surname.Contains(name.Trim()) || l.Profession.Contains(name.Trim()));
+            Console.WriteLine($"Name: {employee.Name}  Surname: {employee.Surname}  Profession: {employee.Profession}  Salary:{employee.Salary}");
         }
 
         public void GetAll()
         {
             foreach (Employee employee in data.Datas.Where(n => n.SoftDelete == false))
             {
-                Console.WriteLine($"Name: {employee.Name}\n Surname: {employee.Surname}\n Profession: {employee.Profession}\n Salary:{employee.Salary}");
+                Console.WriteLine($" Name: {employee.Name}\n Surname: {employee.Surname}\n Profession: {employee.Profession}\n Salary:{employee.Salary}");
             }
         }
 

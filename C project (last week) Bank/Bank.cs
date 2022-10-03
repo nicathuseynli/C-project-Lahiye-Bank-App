@@ -65,14 +65,27 @@ namespace C_project__last_week__Bank
                                         goto Menu;
                                         break;
                                     case 5:
-                                        //branchService.Update(branch);
-                                        //branchService.Delete(branch);
+                                        branchService.Delete();
                                         goto Menu;
                                         break;
                                     case 6:
-                                        //branchService.TransferEmployee();
+                                        branchService.Update();
                                         goto Menu;
                                         break;
+                                    case 7:
+                                      //  branchService.GetProfit();
+                                        goto Menu;
+                                        break;
+                                    case 8:
+                                      //  branchService.HireEmployee();
+                                        goto Menu;
+                                        break;
+                                    case 9:
+                                      //  branchService.TransferEmployee();
+                                        goto Menu;
+                                        break;
+
+
                                 }
                                 break;
 
@@ -101,8 +114,8 @@ namespace C_project__last_week__Bank
                                 break;
                             case 4:
                                employeeService.Get();
-                                    //Console.WriteLine(employee.Name + " " + employee.Surname + " " + employee.Profession);
-                                    goto Menu;
+                                //Console.WriteLine(employee.Name + " " + employee.Surname + " " + employee.Profession);
+                                goto Menu;
                                 break;
                             case 5:
                                employeeService.GetAll();
@@ -137,7 +150,7 @@ namespace C_project__last_week__Bank
             Console.WriteLine("1 : Create Branch");
             Console.WriteLine("2 : Transfer Money");
             Console.WriteLine("3 : Get");
-            Console.WriteLine("4 : GetAll ");
+            Console.WriteLine("4 : GetAll");
             Console.WriteLine("5 : Delete Branch");
             Console.WriteLine("6 : Update Branch");
             Console.WriteLine("7 : Get    Profit");
