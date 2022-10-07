@@ -9,7 +9,7 @@ namespace C_project__last_week__Bank
         static void Main(string[] args)
         {
             EmployeeService employeeService = new EmployeeService();
-            BranchService branchService = new BranchService();
+            BranchService branchService = new BranchService(employeeService);
 
             Console.WriteLine(                     " Welcome The CA Bank");
              
@@ -49,50 +49,52 @@ namespace C_project__last_week__Bank
                                 switch (branchmenu)
                                 {
                                     case 1:
-                                        branchService.Create(branch);
+                                            //isleyir
+                                        branchService.Create();
                                         goto Menu;
-                                        break;
                                      case 2:
+                                            //isleyir
                                         branchService.TransferMoney();
                                         goto Menu;
-                                        break;
                                     case 3:
+                                            //isleyir
                                         branchService.Get();
                                         goto Menu;
-                                        break;
                                     case 4:
+                                            //isleyir
                                         branchService.GetAll();
-                                        goto Menu;
-                                        break;
+                                        goto Menu;                                       
                                     case 5:
+                                            //ISLEMIR ! ! !
                                         branchService.Delete();
                                         goto Menu;
-                                        break;
+
                                     case 6:
                                         branchService.Update();
                                         goto Menu;
-                                        break;
+                                      
                                     case 7:
-                                      //  branchService.GetProfit();
+                                            // ISLEMIR ! ! !
+                                       branchService.GetProfit();
                                         goto Menu;
-                                        break;
                                     case 8:
-                                      //  branchService.HireEmployee();
-                                        goto Menu;
-                                        break;
+                                            //isleyir
+                                      Console.WriteLine("Branch name: ");
+                                      string brname=Console.ReadLine();
+                                      Console.WriteLine("Employee name: ");
+                                      string empname=Console.ReadLine();
+                                      branchService.HireEmployee(brname, empname);
+                                      goto Menu;
                                     case 9:
-                                      //  branchService.TransferEmployee();
-                                        goto Menu;
-                                        break;
-
-
+                                            //isleyir
+                                      Console.Write("Enter the old branchName : ");
+                                      string tname=Console.ReadLine();
+                                      branchService.TransferEmployee(tname ,branch);
+                                      goto Menu;
                                 }
                                 break;
-
                         }
                         break;
-                        
-                       
                     case 2:
                         Console.Clear();
                         EmployeeMenu();
@@ -100,31 +102,25 @@ namespace C_project__last_week__Bank
                         switch (empmenu)
                         {
                             case 1:
-                                employeeService.Create(employee);
+                                employeeService.Create();
                                 goto Menu;
-                                break;
                             case 2:
                                  employeeService.Delete();
                                     Console.WriteLine(" Employee successfully deleted ");
                                 goto Menu;
-                                break;
                             case 3:
                                 employeeService.Update();
                                 goto Menu;
-                                break;
                             case 4:
                                employeeService.Get();
-                                //Console.WriteLine(employee.Name + " " + employee.Surname + " " + employee.Profession);
+                                Console.WriteLine(employee.Name + " " + employee.Surname + " " + employee.Profession);
                                 goto Menu;
-                                break;
                             case 5:
                                employeeService.GetAll();
                                 goto Menu;
-                                break;
                         }
                         break;
                 }
-
             }
             else
             {

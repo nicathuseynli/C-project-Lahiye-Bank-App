@@ -10,15 +10,16 @@ namespace C_project__last_week__Bank.Services.Implementations
 {
     public class BranchService : IBranchService,IBankService<Branch>
     {
+        private EmployeeService employeeService;
         private Bank<Branch> data;
-        public BranchService()
+        public BranchService(EmployeeService data1 )
         {
+            employeeService = data1;
             data = new Bank<Branch>();
         }
-        public void Create(Branch partner)
+        public void Create()
         {
-            
-                data.Datas.Add(partner);
+            Branch partner = new Branch();            
             Console.Clear();
             Console.WriteLine("Create Branch");
             Console.WriteLine("Please Enter the Name:");
@@ -30,15 +31,17 @@ namespace C_project__last_week__Bank.Services.Implementations
             partner.Name = name;
             partner.Budget = budget;
             partner.Address = address;
-        }
+            partner.SoftDelete = false;
+            data.Datas.Add(partner);
 
+        }
         public void Delete()
         {
             string name=Console.ReadLine();
             Branch branch = data.Datas.Find(x => x.Name == name.ToLower().Trim());
             branch.SoftDelete = true;
-        }
 
+        }
         public void Get()
         {
               string name = Console.ReadLine();
@@ -49,46 +52,54 @@ namespace C_project__last_week__Bank.Services.Implementations
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Branch not found ! ! !");
+                Console.WriteLine(ex.Message);
             }
         }
-
         public void GetAll()
         {
-            foreach (var branch in data.Datas.Where(m => m.SoftDelete = false)) ;
-        }
-
-        public void GetProfit(Branch branch)
-        {
-            Console.WriteLine("Calculate profit and less:\n");
-            Console.WriteLine("Input Cost Price : ");
-            Console.WriteLine("Input Selling Price : ");
-            decimal Sellprice = 0;
-            branch.employees.ForEach(c => Sellprice += c.Salary);
-            decimal GetProfil = branch.Budget - Sellprice;
-            Console.WriteLine( $"Profit of the {branch.Name} branch in {GetProfil}");
-         
-        }
-
-        public void HireEmployee(Branch branch,EmployeeService employeeService)
-        {
-            Employee employee = new Employee();
-            if (branch.Budget > employee.Salary)
+            foreach (var branch in data.Datas.Where(m => m.SoftDelete == false))
             {
-                branch.employees.Add(employee);
-                branch.Budget = employee.Salary;
-                Console.WriteLine($"Employee{employee.Name} surname {employee.Surname} was successfully hired .");
+                Console.WriteLine($"Name : { branch.Name}  + Address : {branch.Address} + Budget : { branch.Budget}");
+            } ;
+        }
+        public void GetProfit()
+        {           
+            string branchName = Console.ReadLine();
+            Branch branch = data.Datas.Find(x => x.Name == branchName);
+            decimal sum = 0;
+            foreach (var employee in branch.employees)
+            {
+                sum += employee.Salary;
+            }
+            decimal profit = branch.Budget - sum;
+            Console.WriteLine(profit);        
+        }
+        public void HireEmployee(string branchName,string employeeName)
+        {
+            try
+            {
+            Branch branch = data.Datas.Where(x => x.Name == branchName).FirstOrDefault();
+            Employee employee=employeeService.data1.Datas.Where(n => n.Name == employeeName).FirstOrDefault();
+            branch.employees.Add(employee);
+            foreach (var item in branch.employees)
+            {
+                Console.WriteLine();
+            }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
-
-        public void TransferEmployee(string employeeName,string branchName,Branch branch)
+        public void TransferEmployee(string employeeName,Branch branch)
         {
-            Console.WriteLine(         "Transfer Employee");
-            Console.Write(             "Please Enter the Employee's name");
+            
+            Console.Write("Please Enter the Employee's name : ");
             string ename = Console.ReadLine();
-            Console.WriteLine(         "Please Enter the Branch Name");
-            string bname = Console.ReadLine();
-            int count=Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine(         "Please Enter the Branch Name : ");
+            //string bname = Console.ReadLine();
             Employee employee = new Employee();
             foreach(Branch Transfer in data.Datas)
             {
@@ -102,55 +113,59 @@ namespace C_project__last_week__Bank.Services.Implementations
                 {
                     Console.WriteLine("Employee already in this branch");
                 }
+                break;
             }
-            foreach(Branch Transfer in data.Datas)
-            {
-                if(employee.Name != bname)
-                {
-                    Console.WriteLine("");
-                }
-            }
+            //foreach(Branch Transfer in data.Datas)
+            //{
+            //    if(employee.Name != bname)
+            //    {
+            //        Console.WriteLine("");
+            //    }
+            //}
         }
 
         public void TransferMoney()
         { 
-            Console.WriteLine(           "Transfer Money");
-            Console.Write(           "Please Enter Your Name:");
+            Console.Write("Please Enter YourBranch Name:");
             string mainame=Console.ReadLine();
-            Console.Write(          "Please Enter the Owner Name :");
+            Console.Write("Please Enter OwnerBranch Name :");
             string name =Console.ReadLine();
-            Console.WriteLine(       "Select Amount :");
+            Console.Write("Select Amount :");
             int amount = Convert.ToInt32(Console.ReadLine());
             Branch branch = new Branch();  
             foreach(Branch Transfer in data.Datas)
             {
-                if (branch.Name == name)
+                if (Transfer.Name == mainame)
                 {
-                    Transfer.Budget += branch.Budget;
+                    Transfer.Budget -= amount;
 
                 }               
             }
             foreach(Branch Transfer in data.Datas)
             {
-                if(Transfer.Name == branch.Name)
+                if(Transfer.Name == name)
                 {
-                    branch.Budget += Transfer.Budget;
+                    Transfer.Budget += amount ;
                     break;
                 }
             }
         }
-
         public void Update()
         {
             {
-                Console.Write("Name : ");
+                Console.Write("Branch name : ");
                 string name = Console.ReadLine();
                 Branch branch  = data.Datas.Find(u => u.Name.ToLower().Trim() == name.ToLower().Trim());
-                Console.Write("New Salary : ");
+                Console.Write("New Budget : ");
                 branch.Budget = decimal.Parse(Console.ReadLine());
                 branch.Address = Console.ReadLine();
+                Console.Write("New address : ");
+                string address= Console.ReadLine();
+                Console.Write("Branch already works in CA Bank");
+                bool delete = bool.Parse(Console.ReadLine());
+                Console.Write("Branch's datas are refreshed successfully");
+
             }
         }
     }
-
 }
