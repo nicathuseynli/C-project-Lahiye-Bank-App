@@ -34,28 +34,28 @@ namespace C_project__last_week__Bank.Services.Implementations
             partner.Profession = profession;
             partner.SoftDelete = false;
             data1.Datas.Add(partner);
-            //if(partner.SoftDelete == false)
-            //{
-            //}
-            //else
-            //{
-            //    Console.WriteLine(" This Employee is avaialable .");
-            //}
         }
-
         public void Delete()
         {
+            Console.Write("Please enter the employee name : ");
             string name = Console.ReadLine();
             try
             {
-                Employee employee = data1.Datas.Find(x=>x.Name.Contains(name.ToLower().Trim()) || x.Surname.Contains(name.ToLower().Trim()));
+                Employee employee = data1.Datas.Find(x=>x.Name.Contains(name.Trim()) || x.Surname.Contains(name.Trim()));
+                if(employee != null)
+                {
+                    data1.Datas.Remove(employee);
+                }
+                else
+                {
+                    Console.WriteLine("Employee didn't work");
+                }
             }
             catch(Exception)
             {
                 Console.WriteLine("Employee was not found");
             }
         }
-
         public void Get()           
         {
             Console.Write("Name : ");

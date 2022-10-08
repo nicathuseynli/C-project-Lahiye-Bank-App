@@ -37,17 +37,26 @@ namespace C_project__last_week__Bank.Services.Implementations
         }
         public void Delete()
         {
+            Console.Write("Please enter the name which you want delete : ");
             string name=Console.ReadLine();
-            Branch branch = data.Datas.Find(x => x.Name == name.ToLower().Trim());
+            try
+            {
+            Branch branch = data.Datas.Find(x => x.Name.Contains(name.ToLower().Trim()));
             branch.SoftDelete = true;
+            Console.WriteLine("Employee deleted successfully ");    
+            }
+            catch (Exception)
+            {
 
+                Console.WriteLine("Bracnh was deleted"); ;
+            }
         }
         public void Get()
         {
               string name = Console.ReadLine();
             try
             {
-                Branch branch = data.Datas.Find(l => l.Name.Contains(name.ToLower().Trim()) || l.Budget.ToString().Contains(name.ToLower().Trim()) || l.Address.Contains(name.ToLower().Trim()));
+                Branch branch = data.Datas.Find(l => l.Name.Contains(name.Trim()) || l.Budget.ToString().Contains(name.Trim()) || l.Address.Contains(name.Trim()));
                 Console.WriteLine(branch.Name + " " + branch.Budget + " " + branch.Address);
             }
             catch (Exception ex)
@@ -59,20 +68,28 @@ namespace C_project__last_week__Bank.Services.Implementations
         {
             foreach (var branch in data.Datas.Where(m => m.SoftDelete == false))
             {
-                Console.WriteLine($"Name : { branch.Name}  + Address : {branch.Address} + Budget : { branch.Budget}");
+                Console.WriteLine($"Name : { branch.Name}\nAddress : {branch.Address}\nBudget : { branch.Budget}\n");
             } ;
         }
         public void GetProfit()
-        {           
+        {
+            try
+            {
+                Console.WriteLine("Please enter the branch Name : ");
             string branchName = Console.ReadLine();
             Branch branch = data.Datas.Find(x => x.Name == branchName);
             decimal sum = 0;
-            foreach (var employee in branch.employees)
+            foreach (var employee in employeeService.data1.Datas)
             {
                 sum += employee.Salary;
             }
             decimal profit = branch.Budget - sum;
             Console.WriteLine(profit);        
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Branch has not enough money");
+            }
         }
         public void HireEmployee(string branchName,string employeeName)
         {
@@ -115,13 +132,10 @@ namespace C_project__last_week__Bank.Services.Implementations
                 }
                 break;
             }
-            //foreach(Branch Transfer in data.Datas)
-            //{
-            //    if(employee.Name != bname)
-            //    {
-            //        Console.WriteLine("");
-            //    }
-            //}
+            
+            
+            
+            
         }
 
         public void TransferMoney()
@@ -158,13 +172,9 @@ namespace C_project__last_week__Bank.Services.Implementations
                 Branch branch  = data.Datas.Find(u => u.Name.ToLower().Trim() == name.ToLower().Trim());
                 Console.Write("New Budget : ");
                 branch.Budget = decimal.Parse(Console.ReadLine());
-                branch.Address = Console.ReadLine();
                 Console.Write("New address : ");
-                string address= Console.ReadLine();
-                Console.Write("Branch already works in CA Bank");
-                bool delete = bool.Parse(Console.ReadLine());
+                branch.Address = Console.ReadLine();
                 Console.Write("Branch's datas are refreshed successfully");
-
             }
         }
     }

@@ -65,16 +65,16 @@ namespace C_project__last_week__Bank
                                         branchService.GetAll();
                                         goto Menu;                                       
                                     case 5:
-                                            //ISLEMIR ! ! !
+                                            //isleyir
                                         branchService.Delete();
                                         goto Menu;
 
                                     case 6:
+                                            //isleyir
                                         branchService.Update();
                                         goto Menu;
-                                      
                                     case 7:
-                                            // ISLEMIR ! ! !
+                                            // isleyir
                                        branchService.GetProfit();
                                         goto Menu;
                                     case 8:
