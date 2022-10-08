@@ -10,25 +10,19 @@ namespace C_project__last_week__Bank
         {
             EmployeeService employeeService = new EmployeeService();
             BranchService branchService = new BranchService(employeeService);
-
-            Console.WriteLine(                     " Welcome The CA Bank");
-             
-
+            Console.WriteLine(" Welcome The CA Bank");
             Branch branch = new Branch();
             Employee employee = new Employee();
             Manager manager = new Manager();
-
-
             while (true)
             {
-
             Console.Write("Login: ");
             string login=Console.ReadLine();
             Console.Write("Password: ");
             string password=Console.ReadLine();
             manager.Username = "Nijat";
             manager.Password = "12345A";
-           Menu : if (manager.Username==login&&password==manager.Password)
+            if (manager.Username==login&&password==manager.Password)
             {
                 Console.WriteLine("Welcome to Manager Operations Menu");
                 Console.WriteLine("If you want to Branch operations please click the 1");
@@ -38,7 +32,7 @@ namespace C_project__last_week__Bank
                 { 
                     case 1:
                         Console.Clear();
-                        ManagerMenu();
+                        Menu: ManagerMenu();
                         int commandmenu = int.Parse(Console.ReadLine());
                         switch (commandmenu)
                         {
@@ -49,53 +43,38 @@ namespace C_project__last_week__Bank
                                 switch (branchmenu)
                                 {
                                     case 1:
-                                            //isleyir
                                         branchService.Create();
                                         goto Menu;
-                                     case 2:
-                                            //isleyir
+                                    case 2:
                                         branchService.TransferMoney();
                                         goto Menu;
                                     case 3:
-                                            //isleyir
                                         branchService.Get();
                                         goto Menu;
                                     case 4:
-                                            //isleyir
                                         branchService.GetAll();
                                         goto Menu;                                       
                                     case 5:
-                                            //isleyir
                                         branchService.Delete();
                                         goto Menu;
 
                                     case 6:
-                                            //isleyir
                                         branchService.Update();
                                         goto Menu;
                                     case 7:
-                                            // isleyir
-                                       branchService.GetProfit();
+                                        branchService.GetProfit();
                                         goto Menu;
                                     case 8:
-                                            //isleyir
-                                      Console.WriteLine("Branch name: ");
-                                      string brname=Console.ReadLine();
-                                      Console.WriteLine("Employee name: ");
-                                      string empname=Console.ReadLine();
-                                      branchService.HireEmployee(brname, empname);
+                                       branchService.HireEmployee();
                                       goto Menu;
                                     case 9:
-                                            //isleyir
-                                      Console.Write("Enter the old branchName : ");
-                                      string tname=Console.ReadLine();
-                                      branchService.TransferEmployee(tname ,branch);
-                                      goto Menu;
+                                       branchService.TransferEmployee();
+                                       goto Menu;
                                 }
                                 break;
                         }
                         break;
-                    case 2:
+                        case 2:
                         Console.Clear();
                         EmployeeMenu();
                         int empmenu=int.Parse(Console.ReadLine());
@@ -129,13 +108,6 @@ namespace C_project__last_week__Bank
             
             }
         }
-        //public static void Data()
-        //{
-        //    string Name = Console.ReadLine();
-        //    string Surname = Console.ReadLine();
-        //    decimal Salary = decimal.Parse(Console.ReadLine());
-        //    string Profession = Console.ReadLine();
-        //}
         public static void ManagerMenu()
         {
             Console.WriteLine("1 : Branch");
@@ -161,7 +133,6 @@ namespace C_project__last_week__Bank
             Console.WriteLine("4 : Get    Employee");
             Console.WriteLine("5 : GetAll Employee");
         }
-           
     }
 }
     

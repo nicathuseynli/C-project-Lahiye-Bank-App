@@ -10,21 +10,19 @@ namespace C_project__last_week__Bank.Services.Implementations
 {
     public class EmployeeService : IEmployeeService, IBankService<Employee>
     {
-        public Bank<Employee> data1;
+        public Bank<Employee> _data1;
         public EmployeeService()
         {
-            data1 = new Bank<Employee>();
+            _data1 = new Bank<Employee>();
         }
         public void Create()
         {
             Employee partner = new Employee();            
-            Console.Clear();
-            Console.WriteLine("Create Employee");
-            Console.WriteLine("Please Enter the Name:");
+            Console.WriteLine("Please Enter the Name: ");
             string name = Console.ReadLine();
-            Console.WriteLine("Please Enter the Surname:");
+            Console.WriteLine("Please Enter the Surname: ");
             string surname = Console.ReadLine();
-            Console.WriteLine("Please Enter the Salary:");
+            Console.WriteLine("Please Enter the Salary: ");
             decimal salary = decimal.Parse(Console.ReadLine());
             Console.WriteLine("Please Enter the Profession:");
             string profession = Console.ReadLine();
@@ -33,7 +31,7 @@ namespace C_project__last_week__Bank.Services.Implementations
             partner.Salary = salary;
             partner.Profession = profession;
             partner.SoftDelete = false;
-            data1.Datas.Add(partner);
+            _data1.Datas.Add(partner);
         }
         public void Delete()
         {
@@ -41,10 +39,10 @@ namespace C_project__last_week__Bank.Services.Implementations
             string name = Console.ReadLine();
             try
             {
-                Employee employee = data1.Datas.Find(x=>x.Name.Contains(name.Trim()) || x.Surname.Contains(name.Trim()));
+                Employee employee = _data1.Datas.Find(x=>x.Name.Contains(name.Trim()) || x.Surname.Contains(name.Trim()));
                 if(employee != null)
                 {
-                    data1.Datas.Remove(employee);
+                    _data1.Datas.Remove(employee);
                 }
                 else
                 {
@@ -60,23 +58,21 @@ namespace C_project__last_week__Bank.Services.Implementations
         {
             Console.Write("Name : ");
             string name = Console.ReadLine();
-            Employee employee = data1.Datas.Find(l=>l.Name.Contains(name.Trim()) || l.Surname.Contains(name.Trim()) || l.Profession.Contains(name.Trim()));
+            Employee employee = _data1.Datas.Find(l=>l.Name.Contains(name.Trim()) || l.Surname.Contains(name.Trim()) || l.Profession.Contains(name.Trim()));
             Console.WriteLine($"Name: {employee.Name}  Surname: {employee.Surname}  Profession: {employee.Profession}  Salary:{employee.Salary}");
         }
-
         public void GetAll()
         {
-            foreach (Employee employee in data1.Datas.Where(n => n.SoftDelete == false))
+            foreach (Employee employee in _data1.Datas.Where(n => n.SoftDelete == false))
             {
                 Console.WriteLine($" Name: {employee.Name}\n Surname: {employee.Surname}\n Profession: {employee.Profession}\n Salary:{employee.Salary}");
             }
         }
-
         public void Update()
         {
             Console.Write("Name : ");
             string name = Console.ReadLine();
-            Employee employee = data1.Datas.Find(u=>u.Name.ToLower().Trim() == name.ToLower().Trim());
+            Employee employee = _data1.Datas.Find(u=>u.Name.ToLower().Trim() == name.ToLower().Trim());
             Console.Write("New Salary : ");
             employee.Salary = decimal.Parse(Console.ReadLine());
             Console.Write("New Profession : ");

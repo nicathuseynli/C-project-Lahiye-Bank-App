@@ -7,6 +7,5 @@ namespace C_project__last_week__Bank.Services.Interface
 {
     public interface IEmployeeService : IBankService<Employee>
     {
-
     }
 }

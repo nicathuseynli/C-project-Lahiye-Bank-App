@@ -9,9 +9,6 @@ namespace C_project__last_week__Bank.Models
         public string Surname { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-
-       
-
     }
      
 }

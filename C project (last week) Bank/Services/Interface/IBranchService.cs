@@ -8,10 +8,10 @@ namespace C_project__last_week__Bank.Services.Interface
 {
     public interface IBranchService : IBankService<Branch>
     {
-        void HireEmployee(string branchName, string employeeName);
+        void HireEmployee();
         void GetProfit();
         void TransferMoney();
-        void TransferEmployee(string employeeName, Branch branch);
+        void TransferEmployee();
 
     }
 }
